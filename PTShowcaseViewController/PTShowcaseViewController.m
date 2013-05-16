@@ -258,40 +258,40 @@
             break;
         }
             
-        case PTContentTypePdf:
-        {
-            NSString *path = [self.showcaseView pathForItemAtIndex:position];
-            NSString *text = [self.showcaseView textForItemAtIndex:position];
-
-            // TODO remove duplicate
-            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-            NSURL *url = nil;
-            
-            // Check for file URLs.
-            if ([path hasPrefix:@"/"]) {
-                // If the url starts with / then it's likely a file URL, so treat it accordingly.
-                url = [NSURL fileURLWithPath:path];
-            }
-            else {
-                // Otherwise we assume it's a regular URL.
-                url = [NSURL URLWithString:path];
-            }
-            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            
-            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:url];
-            document.title = text;
-
-            PSPDFViewController *detailViewController = [[PSPDFViewController alloc] initWithDocument:document];
-            detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            detailViewController.backgroundColor = self.view.backgroundColor;
-            
-            UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
-
-            // TODO zoom in/out (just like in Photos.app in the iPad)
-            [self presentViewController:navCtrl animated:YES completion:NULL];
-            
-            break;
-        }
+//        case PTContentTypePdf:
+//        {
+//            NSString *path = [self.showcaseView pathForItemAtIndex:position];
+//            NSString *text = [self.showcaseView textForItemAtIndex:position];
+//
+//            // TODO remove duplicate
+//            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//            NSURL *url = nil;
+//            
+//            // Check for file URLs.
+//            if ([path hasPrefix:@"/"]) {
+//                // If the url starts with / then it's likely a file URL, so treat it accordingly.
+//                url = [NSURL fileURLWithPath:path];
+//            }
+//            else {
+//                // Otherwise we assume it's a regular URL.
+//                url = [NSURL URLWithString:path];
+//            }
+//            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//            
+//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:url];
+//            document.title = text;
+//
+//            PSPDFViewController *detailViewController = [[PSPDFViewController alloc] initWithDocument:document];
+//            detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//            detailViewController.backgroundColor = self.view.backgroundColor;
+//            
+//            UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+//
+//            // TODO zoom in/out (just like in Photos.app in the iPad)
+//            [self presentViewController:navCtrl animated:YES completion:NULL];
+//            
+//            break;
+//        }
             
         default: NSAssert(NO, @"Unknown content-type.");
     }
